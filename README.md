@@ -1,6 +1,6 @@
 # gcp_tf_modules
 
-This repo contains GCP Terraform Modules. 
+This repo contains GCP Terraform Modules. If you wish to use these modules, please endevour to keep these modules seperately from your calling Terraform code.  In other words, this repo should house re-usable modules and nothing more.
 
 
 ### Required Software/Libraries
