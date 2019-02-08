@@ -1,32 +1,32 @@
-# gcp_tf_modules
+# SADA Systems' Terraform Modules
 
-This repo contains GCP Terraform Modules. If you wish to use these modules, please endevour to keep these modules seperately from your calling Terraform code.  In other words, this repo should house re-usable modules and nothing more.
+This repo contains Terraform modules for AWS and GCP. If you wish to use these modules, please endeavour to keep these modules separate from your calling Terraform code. In other words, this repo should house re-usable modules and nothing more.
 
+<!-- toc -->
 
-### Required Software/Libraries
+- [Dependencies](#dependencies)
+- [Optional Dependencies](#optional-dependencies)
+- [Pre-commit Hooks](#pre-commit-hooks)
 
-The following is the list of required software needed to execute this code.  Instructions on how to install this software are outside the scope of this document, however, the following links will take you to the respective vendor sites for details on downloading and installing the necessary software:
+<!-- tocstop -->
 
-* [Git]  - Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+## Dependencies
 
-* [Google Cloud SDK] - The Cloud SDK is a set of tools (gcloud, gsutils,etc.) for Cloud Platform.
+- [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is required to manipulate this repository's code
+- [`terraform`](https://learn.hashicorp.com/terraform/getting-started/install.html) is a tool for building, changing, and versioning infrastructure safely and efficiently.
 
-* [Terraform] - Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+## Optional Dependencies
 
-### Optional Software
+- [`terragrunt`](https://github.com/gruntwork-io/terragrunt#install-terragrunt) is a thin wrapper for Terraform that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state.
+- [`markdown-toc`](https://github.com/smaslennikov/markdown-toc) is a Markdown table of contents generator
 
-This software is optional, however strongly recommended to help maintain the code readability and documentation.
+## Pre-commit Hooks
 
-[pre-commit] - A framework for managing and maintaining multi-language pre-commit hooks.
+[pre-commit](https://pre-commit.com/#install) is a framework for managing and maintaining multi-language pre-commit hooks. The following define hooks to be used here:
 
-[NOTE]:  A pre-installed yaml files: `.pre-commit-config.yaml` is included in this repo + .hooks directory, which contains helper scripts for pre-commit.  You simply need to install pre-commit to use it.
-
-[Git]: <https://git-scm.com/>
-[Google Cloud SDK]: <https://cloud.google.com/sdk/>
-[Terragrunt]: <https://github.com/gruntwork-io/terragrunt/releases/>
-[Terraform]: <https://www.terraform.io/downloads.html/>
-[pre-commit]: <https://pre-commit.com/>
-[pre-commit-terraform]: <https://github.com/antonbabenko/pre-commit-terraform/>
+=======
+- `.pre-commit-config.yaml`
+- `.hooks`
 
 ## License
 
