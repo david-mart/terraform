@@ -27,3 +27,15 @@ This software is optional, however strongly recommended to help maintain the cod
 [Terraform]: <https://www.terraform.io/downloads.html/>
 [pre-commit]: <https://pre-commit.com/>
 [pre-commit-terraform]: <https://github.com/antonbabenko/pre-commit-terraform/>
+
+## License
+
+ * [Apache License, Version 2.0][license-apache]: [`./LICENSE-APACHE`][license-apache-local]
+ * [MIT License][license-mit]: [`./LICENSE-MIT`][license-mit-local]
+
+Licensed at your option of either of the above licenses.
+
+[license-mit]: https://opensource.org/licenses/MIT
+[license-mit-local]: LICENSE-MIT
+[license-apache]: https://www.apache.org/licenses/LICENSE-2.0
+[license-apache-local]: LICENSE-APACHE
