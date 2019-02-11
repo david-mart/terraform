@@ -8,6 +8,7 @@ This repo contains Terraform modules for AWS and GCP. If you wish to use these m
 - [Development Dependencies](#development-dependencies)
     * [Optional Dependencies](#optional-dependencies)
     * [Pre-commit Hooks](#pre-commit-hooks)
+- [License](#license)
 
 <!-- tocstop -->
 
