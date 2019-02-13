@@ -35,10 +35,6 @@ resource "google_storage_bucket" "default" {
 
   lifecycle_rule = "${var.lifecycle_rules}"
 
-  logging {
-    log_bucket = "${google_storage_bucket.logging.name}"
-  }
-
   versioning {
     enabled = "${var.versioning}"
   }
