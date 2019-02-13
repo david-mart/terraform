@@ -48,7 +48,7 @@ variable "storage_class" {
 
 variable "versioning" {
   description = "Version bucket objects?"
-  default = false
+  default     = false
 }
 
 variable "website_config" {

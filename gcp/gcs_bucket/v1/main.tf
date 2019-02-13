@@ -43,25 +43,3 @@ resource "google_storage_bucket" "default" {
     enabled = "${var.versioning}"
   }
 }
-
-resource "google_storage_bucket" "logging" {
-  name          = "${local.bucket_name}-logs"
-  location      = "${local.location}"
-  project       = "${local.project_id}"
-  storage_class = "REGIONAL"
-
-  lifecycle {
-    // TODO Should be set to "${var.prevent_destroy}" once https://github.com/hashicorp/terraform/issues/3116 is fixed.
-    prevent_destroy = false
-  }
-
-  lifecycle_rule {
-    "action" {
-      type = "Delete"
-    }
-
-    "condition" {
-      age = 90
-    }
-  }
-}
