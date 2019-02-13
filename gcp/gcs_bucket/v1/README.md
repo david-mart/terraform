@@ -1,3 +1,36 @@
+# Terraform Module
+
+gcs_bucket
+
+## Module Example
+
+```bash
+
+module "bucket" {
+  source           = "git@github.com:sadasystems/gcp_tf_modules.git//gcp/gcs_bucket/v1"
+  project_id       = "my-project"
+  name             = "mybucket"
+  region           = "us-central1"
+  storage_class = "NEARLINE"
+  lifecycle_rules = [
+    {
+      action = [
+        {
+          type = "Delete"
+        },
+      ]
+
+      condition = [
+        {
+          age = 90
+        },
+      ]
+    },
+  ]
+}
+
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Inputs
