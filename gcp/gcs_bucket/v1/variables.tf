@@ -23,7 +23,7 @@ variable "lifecycle_rules" {
 }
 
 variable "name" {
-  description = "The name of the bucket - NOTE: The project name will be concatonated to this name."
+  description = "The name of the bucket. Must be unique across all GCS buckets."
 }
 
 variable "project_id" {

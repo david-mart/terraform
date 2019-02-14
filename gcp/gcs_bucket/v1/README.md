@@ -39,7 +39,7 @@ module "bucket" {
 |------|-------------|:----:|:-----:|:-----:|
 | force_destroy | When deleting a bucket, this boolean option will delete all contained objects. | string | `false` | no |
 | lifecycle_rules |  | list | `<list>` | no |
-| name | The name of the bucket - NOTE: The project name will be concatonated to this name. | string | - | yes |
+| name | The name of the bucket. Must be unique across all GCS buckets. | string | - | yes |
 | project_id | The ID of the google project to which the resource belongs. If it is not provided, the provider project is used. | string | `` | no |
 | region | The GCS region. If it is not provided, the provider region is used. | string | `` | no |
 | role_entities |  | list | `<list>` | no |

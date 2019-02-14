@@ -16,7 +16,7 @@
 data "google_client_config" "current" {}
 
 locals {
-  bucket_name = "${var.name}-${local.project_id}"
+  bucket_name = "${var.name}"
   location    = "${var.region != "" ? var.region : data.google_client_config.current.region}"
   project_id  = "${var.project_id != "" ? var.project_id : data.google_client_config.current.project}"
 }
