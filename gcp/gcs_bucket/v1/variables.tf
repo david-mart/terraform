@@ -18,8 +18,9 @@ variable "force_destroy" {
 }
 
 variable "lifecycle_rules" {
-  default = []
-  type    = "list"
+  description = "The bucket's Lifecycle Rules configuration. A list of multiple blocks of this type are permitted. See module example."
+  default     = []
+  type        = "list"
 }
 
 variable "name" {
