@@ -44,7 +44,7 @@ module "bucket" {
 | region | The GCS region. If it is not provided, the provider region is used. | string | `` | no |
 | role_entities | List of role/entity pairs in the form ROLE:entity. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls) for more details. Must be set if predefined_acl is not. | list | `<list>` | no |
 | storage_class | The Storage Class of the new bucket. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE. | string | `REGIONAL` | no |
-| versioning | The bucket's Versioning configuration. | string | `false` | no |
+| versioning | Enable bucket versioning. True or False | string | `false` | no |
 | website_config | Configuration if the bucket acts as a website. | list | `<list>` | no |
 
 ## Outputs

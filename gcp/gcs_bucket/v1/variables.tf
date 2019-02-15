@@ -50,7 +50,8 @@ variable "storage_class" {
 }
 
 variable "versioning" {
-  description = "The bucket's Versioning configuration."
+  description = "Enable bucket versioning. True or False"
+  type        = "string"
   default     = false
 }
 
