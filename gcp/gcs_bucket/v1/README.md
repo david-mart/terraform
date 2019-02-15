@@ -42,10 +42,10 @@ module "bucket" {
 | name | The name of the bucket. Must be unique across all GCS buckets. | string | - | yes |
 | project_id | The ID of the google project to which the resource belongs. If it is not provided, the provider project is used. | string | `` | no |
 | region | The GCS region. If it is not provided, the provider region is used. | string | `` | no |
-| role_entities |  | list | `<list>` | no |
+| role_entities | List of role/entity pairs in the form ROLE:entity. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls) for more details. Must be set if predefined_acl is not. | list | `<list>` | no |
 | storage_class | The Storage Class of the new bucket. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE. | string | `REGIONAL` | no |
-| versioning | Version bucket objects? | string | `false` | no |
-| website_config |  | list | `<list>` | no |
+| versioning | The bucket's Versioning configuration. | string | `false` | no |
+| website_config | Configuration if the bucket acts as a website. | list | `<list>` | no |
 
 ## Outputs
 

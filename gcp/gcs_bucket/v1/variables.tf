@@ -24,6 +24,7 @@ variable "lifecycle_rules" {
 
 variable "name" {
   description = "The name of the bucket. Must be unique across all GCS buckets."
+  type        = "string"
 }
 
 variable "project_id" {
@@ -37,8 +38,9 @@ variable "region" {
 }
 
 variable "role_entities" {
-  default = []
-  type    = "list"
+  default     = []
+  description = "List of role/entity pairs in the form ROLE:entity. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls) for more details. Must be set if predefined_acl is not."
+  type        = "list"
 }
 
 variable "storage_class" {
@@ -47,11 +49,12 @@ variable "storage_class" {
 }
 
 variable "versioning" {
-  description = "Version bucket objects?"
+  description = "The bucket's Versioning configuration."
   default     = false
 }
 
 variable "website_config" {
-  default = []
-  type    = "list"
+  description = "Configuration if the bucket acts as a website."
+  default     = []
+  type        = "list"
 }
