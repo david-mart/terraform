@@ -6,6 +6,7 @@ variable "instance_type" { default = "n1-standard-1" }
 variable "dns_name" { }
 variable "zone_name" { }
 variable "tags" { type = "list" default = [] }
+variable "os" { default = "centos-cloud/centos-7" }
 
 variable "default_tags" { default = ["allow-public-ssh-ansible-controller"] }
 
@@ -24,7 +25,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-7"
+      image = "${var.os}"
     }
   }
 
