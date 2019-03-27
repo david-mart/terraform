@@ -1,32 +1,19 @@
-variable "region" { default = "us-central1" }
-variable "name" { }
-variable "tier" {
-  default = "STANDARD_HA"
-}
-variable "memory_size" { }
-variable "authorized_network" { }
-
-variable "redis_version" {
-  default = "REDIS_3_2"
-}
-
-variable "display_name" { }
-variable "reserved_ip_range" { }
-
 resource "google_redis_instance" "cache" {
-  name           = "${var.name}-cache"
-  tier           = "${var.tier}"
-  memory_size_gb = "${var.memory_size}"
+  name         = "${var.name}-cache"
+  display_name = "${var.display_name}"
 
   # STANDARD_HA will provision in two unique zones
-  # location_id             = "us-central1-a"
-  # alternative_location_id = "us-central1-f"
+  # If we need to designate the zones, we can add the location parameters.
+  tier = "${var.tier}"
 
+  memory_size_gb = "${var.memory_size}"
+
+  region             = "${var.region}"
   authorized_network = "${var.authorized_network}"
+  redis_version      = "${var.redis_version}"
+  display_name       = "${var.name}"
 
-  redis_version     = "${var.redis_version}"
-  display_name      = "${var.name}"
-
-  # TODO: Not sure if I need to calculate out of colossus networks
-  # reserved_ip_range = "192.168.0.0/29"
+  # This IP address should be in RFC1918 space (private ip). It should not used
+  # by the customer's vpc. It should not be used by other MemoryStore instances.
+  reserved_ip_range = "${var.reserved_ip_range}"
 }
