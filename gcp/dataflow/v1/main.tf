@@ -5,4 +5,9 @@ resource "google_dataflow_job" "default" {
   parameters        = "${var.job_parameters}"
   max_workers       = "${var.max_workers}"
   on_delete         = "${var.on_delete}"
+  project           = "${var.project_id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

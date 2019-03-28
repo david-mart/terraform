@@ -35,6 +35,7 @@ module "dataflow" {
 | job_parameters | (Optional) Map of key/value pairs to be passed to the Dataflow job (as used in the template). | map | `<map>` | no |
 | max_workers | (Optional) The number of workers permitted to work on the job. More workers may improve processing speed at additional cost. | string | `1` | no |
 | on_delete | (Optional) One of [drain] or [cancel]. Specifies behavior of deletion during terraform destroy.  If cancelled, the job terminates - any data written remains where it is, but no new data will be processed. If drained, no new data will enter the pipeline, but any data currently in the pipeline will finish being processed.i The default is cancelled, but if a user sets on_delete to drain in the configuration, you may experience a long wait for your terraform destroy to complete. | string | `cancel` | no |
+| project_id | The name of the project | string | `` | no |
 | temp_gcs_location | A writeable location on GCS for the Dataflow job to dump its temporary data. | string | - | yes |
 | template_gcs_path | The GCS path to the Dataflow job template. | string | - | yes |
 

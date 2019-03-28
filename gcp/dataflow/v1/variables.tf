@@ -1,13 +1,22 @@
+variable project_id {
+  description = "The name of the project"
+  type        = "string"
+  default     = ""
+}
+
 variable "job_name" {
   description = "A unique name for the resource, required by Dataflow"
+  type        = "string"
 }
 
 variable "template_gcs_path" {
   description = "The GCS path to the Dataflow job template."
+  type        = "string"
 }
 
 variable "temp_gcs_location" {
   description = "A writeable location on GCS for the Dataflow job to dump its temporary data."
+  type        = "string"
 }
 
 variable "job_parameters" {
