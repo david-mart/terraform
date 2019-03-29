@@ -1,3 +1,7 @@
+data "google_compute_network" "network" {
+  name = "${var.network}"
+}
+
 resource "google_sql_database_instance" "default" {
   name                 = "${var.instance_name}"
   project              = "${var.project_id}"
@@ -9,12 +13,15 @@ resource "google_sql_database_instance" "default" {
     tier                        = "${var.tier}"
     activation_policy           = "${var.activation_policy}"
     authorized_gae_applications = ["${var.authorized_gae_applications}"]
+    disk_autoresize             = "${var.disk_autoresize}"
+    backup_configuration        = ["${var.backup_configuration}"]
 
-    disk_autoresize = "${var.disk_autoresize}"
+    ip_configuration {
+      ipv4_enabled = "${var.ipv4_enabled}"
+      require_ssl  = "${var.require_ssl}"
+    }
 
-    backup_configuration = ["${var.backup_configuration}"]
-
-    ip_configuration    = ["${var.ip_configuration}"]
+    availability_type   = "${var.availability_type}"     //PostgreSQL only
     location_preference = ["${var.location_preference}"]
     maintenance_window  = ["${var.maintenance_window}"]
     disk_size           = "${var.disk_size}"
@@ -52,45 +59,19 @@ resource "google_sql_user" "default" {
 // @TODO - Need to convert this over to using native terraform resources , when available.
 // See the following issue for details: https://github.com/terraform-providers/terraform-provider-google/issues/2127
 
-resource "null_resource" "apply-cloudsql-private-ip" {
-  provisioner "local-exec" {
-    command = <<EOF
-    gcloud beta compute addresses create ${var.peering_address_range_name}-${var.project_id} \
-    --global \
-    --addresses ${var.peering_cidr_range} \
-    --prefix-length ${var.peering_cidr_prefix} \
-    --description "Peering range for Google Services" \
-    --project ${var.project_id} \
-    --purpose VPC_PEERING  \
-    --network ${var.network} \
-    --quiet
-EOF
-  }
-}
-
-resource "null_resource" "destroy-cloudsql-private-ip" {
-  provisioner "local-exec" {
-    when = "destroy"
-
-    command = <<EOF
-    gcloud beta compute addresses delete ${var.peering_address_range_name}-${var.project_id} --global
-EOF
-  }
-}
-
 resource "null_resource" "vpc-to-services-peering" {
   provisioner "local-exec" {
     command = <<EOF
     gcloud beta services vpc-peerings connect \
     --service servicenetworking.googleapis.com \
     --network ${var.network} \
-    --ranges "${var.peering_address_range_name}-${var.project_id}"  \
+    --ranges "${var.peering_address_range_name}"  \
     --project=${var.project_id} \
     --quiet
 EOF
   }
 
-  depends_on = ["google_sql_database_instance.default", "google_sql_database.db", "google_sql_user.default", "null_resource.apply-cloudsql-private-ip"]
+  depends_on = ["google_sql_database_instance.default", "google_sql_database.db", "google_sql_user.default"]
 }
 
 resource "null_resource" "destroy-vpc-to-services-peering" {

@@ -108,6 +108,11 @@ variable pricing_plan {
   default     = "PER_USE"
 }
 
+variable availability_type {
+  description = "(Optional) This specifies whether a PostgreSQL instance should be set up for high availability (REGIONAL) or single zone (ZONAL)."
+  default     = "REGIONAL"
+}
+
 variable replication_type {
   description = "Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`."
   default     = "SYNCHRONOUS"
@@ -161,4 +166,16 @@ variable peering_cidr_prefix {
 variable "peering_address_range_name" {
   description = "The name of the address range reservation."
   type        = "string"
+}
+
+variable "ipv4_enabled" {
+  description = "(Optional) Whether this Cloud SQL instance should be assigned a public IPV4 address. Either ipv4_enabled must be enabled or a private_network must be configured."
+  type        = "string"
+  default     = "true"
+}
+
+variable "require_ssl" {
+  description = "(Optional) True if mysqld should default to REQUIRE X509 for users connecting over IP."
+  type        = "string"
+  default     = "false"
 }
