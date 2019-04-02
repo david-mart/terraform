@@ -56,7 +56,7 @@ variable "versioning" {
 }
 
 variable "website_config" {
-  description = "Configuration if the bucket acts as a website."
+  description = "Configuration if the bucket acts as a website. This is a list of maps."
   default     = []
   type        = "list"
 }
