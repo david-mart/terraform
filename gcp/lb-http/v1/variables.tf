@@ -32,16 +32,19 @@ variable name {
 variable target_tags {
   description = "List of target tags for health check firewall rule."
   type        = "list"
+  default     = []
 }
 
 variable backends {
   description = "Map backend indices to list of backend maps."
   type        = "map"
+  default     = {}
 }
 
 variable backend_params {
   description = "Comma-separated encoded list of parameters in order: health check path, service port name, service port, backend timeout seconds"
   type        = "list"
+  default     = []
 }
 
 variable backend_protocol {
