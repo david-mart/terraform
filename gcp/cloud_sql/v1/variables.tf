@@ -80,7 +80,7 @@ variable user_name {
 }
 
 variable user_host {
-  description = "The host for the default user"
+  description = "The host for the default user. Only set this for MySQL databases. It will be ignored for PostgreSQL databases"
   type        = "string"
   default     = "%"
 }

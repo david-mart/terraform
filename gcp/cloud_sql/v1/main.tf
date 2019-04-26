@@ -56,11 +56,17 @@ resource "random_id" "user-password" {
   byte_length = 8
 }
 
+# We only set the host if the var.database_version contains the string "MYSQL".
+# If we try to use host with postgres databases, terraform will recreate the
+# user since postgres does not have a concept of hosts for users. This issue
+# goes into more details. https://github.com/terraform-providers/terraform-provider-google/issues/1057
+# Using this hack https://stackoverflow.com/a/47243622 to test whether database
+# is mysql.
 resource "google_sql_user" "default" {
   count    = "${length(var.databases)}"
   name     = "${lookup(var.databases[count.index], "db_user")}"
   project  = "${var.project_id}"
   instance = "${google_sql_database_instance.default.name}"
-  host     = "${var.user_host}"
+  host     = "${replace(var.database_version, "MYSQL", "") != var.database_version ? var.user_host : ""}"
   password = "${var.user_password == "" ? random_id.user-password.hex : var.user_password}"
 }
